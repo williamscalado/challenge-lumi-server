@@ -1,3 +1,5 @@
+import { billDTO } from "../../http/controllers/bill/validation";
+
 export interface IBill {
   id: string;
   id_client: string;
@@ -13,4 +15,17 @@ export interface IBill {
   amount: number;
   create_at: string;
   update_at: string;
+}
+
+export interface IBillService {
+  findByMonthAndYear: (
+    clientNumber: string,
+    monthAndYear: string
+  ) => Promise<IBill>;
+  findByNumber: (clientNumber: string) => Promise<IBill>;
+  create: (data: billDTO) => Promise<void>;
+}
+export interface IBillRepository {
+  find: (filter: any) => Promise<IBill | void>;
+  create: (data: billDTO) => Promise<void>;
 }
