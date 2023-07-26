@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 const billValidationDTO = z.object({
-  id_client: z.string().nonempty(),
+  client_number: z.string().nonempty(),
   month_ref: z.string().nonempty(),
   data: z.string().nonempty(),
   energy_unit: z.string().nonempty(),

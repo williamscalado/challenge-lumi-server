@@ -1,8 +1,9 @@
 import { billDTO } from "../../http/controllers/bill/validation";
+import { IClient } from "../client";
 
-export interface IBill {
+export interface IBill extends IClient {
   id: string;
-  id_client: string;
+  client_number: string;
   month_ref: string;
   data: string;
   energy_unit: string;
@@ -18,12 +19,7 @@ export interface IBill {
 }
 
 export interface IBillService {
-  findByMonthAndYear: (
-    clientNumber: string,
-    monthAndYear: string
-  ) => Promise<IBill>;
-  findByNumber: (clientNumber: string) => Promise<IBill>;
-  create: (data: billDTO) => Promise<void>;
+  create: (dataBill: IBill | IBill[]) => Promise<void>;
 }
 export interface IBillRepository {
   find: (filter: any) => Promise<IBill | void>;
