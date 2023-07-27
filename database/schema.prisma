@@ -1,0 +1,31 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model client {
+  id         Int    @id @default(autoincrement())
+  client_Int String @db.VarChar(50)
+  name       String @db.VarChar(100)
+  address    String @db.VarChar(100)
+  createAt   Int    @db.Integer
+  updateAt   Int    @db.Integer
+  bill       bill[]
+}
+
+model bill {
+  id                    Int    @id @default(autoincrement())
+  client_id             Int
+  client                client @relation(references: [id], fields: [client_id])
+  data                  String
+  energy_unit           String
+  energy_price          Int
+  energy_amount         Int
+  energy_send_unit      Int
+  energy_send_price     Int
+  energy_send_amount    Int
+  contribution_lighting String
+  amount                Int
+  create_at             Int
+  update_at             Int
+}

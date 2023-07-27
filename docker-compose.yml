@@ -1,28 +1,18 @@
-version: '3.9'
+version: '3.8'
+
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: node-app
-    restart: always
-    volumes:
-      - .:/src:cached
-    depends_on:
-      - db
-    ports:
-      - "${PORT}:${PORT}"  
-  db:
+  postgres:
     image: postgres:latest
-    container_name: postgres-db
+    container_name: postgres-lumi
     restart: always
     environment:
       POSTGRES_USER: "${POSTGRES_USER}"
       POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
-      POSTGRES_DB: "${POSTGRES_DB}"
+      POSTGRES_DB: "${POSTGRES_DB}"    
+    ports:
+      - "5432:5432"               
     volumes:
-      - pgdata:/var/lib/postgresql/data
-    env_file: .env
+      - pg_data:/var/lib/postgresql/data
 
 volumes:
-  pgdata:
+  pg_data:
