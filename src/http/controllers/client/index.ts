@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { z } from "zod";
+import { formatErrorMessage } from "../../../helpers/error";
 import { clientService } from "../../../services/client";
 import { IClientDto, clientValidation } from "./validation";
 
@@ -12,9 +12,7 @@ async function createClient(req: Request, res: Response) {
       sucesso: true,
     });
   } catch (error: Error | any) {
-    res.status(500).json({
-      message: error instanceof z.ZodError ? error.issues : error.message,
-    });
+    res.status(400).json(formatErrorMessage(error));
   }
 }
 

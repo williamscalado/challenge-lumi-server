@@ -2,11 +2,12 @@ import { getAllUniqueByField } from "../../helpers/util";
 import { IBill, IBillService } from "../../types/bill";
 
 async function create(dataBill: IBill | IBill[]) {
+  // insert unique clients in database
+  const dataUniqueClient = getAllUniqueByField(dataBill, "client_number");
+
+  // insert bill in database
   if (Array.isArray(dataBill)) {
     //multiple
-    const dataUniqueClient = getAllUniqueByField(dataBill, "client_number");
-    // inserir os clientes
-    // inserir as contas
   } else {
     // single
   }

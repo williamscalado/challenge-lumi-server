@@ -1,7 +1,8 @@
 import { z } from "zod";
+import { clientValidation } from "../../client/validation";
 
-const billValidationDTO = z.object({
-  client_number: z.string().nonempty(),
+export const billValidationDTO = z.object({
+  client: clientValidation,
   month_ref: z.string().nonempty(),
   data: z.string().nonempty(),
   energy_unit: z.string().nonempty(),

@@ -1,20 +1,21 @@
 import { Request, Response } from "express";
 import { z } from "zod";
-import { billService } from "../../../services/bill";
-import { IBill } from "../../../types/bill";
+import { formatErrorMessage } from "../../../helpers/error";
+import { billDTO, billValidationDTO } from "./validation";
 
 async function create(req: Request, res: Response) {
   try {
-    const requestBody: IBill | IBill[] = req.body;
-    await billService.create(requestBody);
+    // throw new ErrorException("teste");
+    const requestBody: billDTO[] = req.body;
+    // Now add this object into an array
+    z.array(billValidationDTO).nonempty().parse(requestBody);
+    //await billService.create(requestBody);
 
     res.status(200).json({
       sucesso: true,
     });
   } catch (error: Error | any) {
-    res.status(500).json({
-      message: error instanceof z.ZodError ? error.issues : error.message,
-    });
+    res.status(400).json(formatErrorMessage(error));
   }
 }
 
