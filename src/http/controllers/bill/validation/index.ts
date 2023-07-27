@@ -1,8 +1,21 @@
 import { z } from "zod";
-import { clientValidation } from "../../client/validation";
 
 export const billValidationDTO = z.object({
-  client: clientValidation,
+  client_number: z
+    .string({
+      required_error: "Número do cliente é obrigatório",
+    })
+    .nonempty(),
+  name: z
+    .string({
+      required_error: "Nome do cliente é obrigatório",
+    })
+    .nonempty(),
+  address: z
+    .string({
+      required_error: "Endereço do cliente é obrigatório",
+    })
+    .nonempty(),
   month_ref: z.string().nonempty(),
   data: z.string().nonempty(),
   energy_unit: z.string().nonempty(),

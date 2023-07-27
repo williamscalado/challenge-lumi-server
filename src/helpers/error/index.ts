@@ -8,12 +8,15 @@ export class ErrorException extends Error {
   }
 }
 
+
+
 export function formatErrorMessage(err: ZodError | Error | any) {
+  console.error(err);
   return {
     error:
       err instanceof z.ZodError
         ? err.issues.map((issue) => `${issue.message}`)
-        : [err.error],
+        : [err?.error],
     timestamp: new Date().toISOString(),
   };
 }

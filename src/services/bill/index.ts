@@ -1,16 +1,18 @@
 import { getAllUniqueByField } from "../../helpers/util";
-import { IBill, IBillService } from "../../types/bill";
+import { billDTO } from "../../http/controllers/bill/validation";
+import { IBillService } from "../../types/bill";
 
-async function create(dataBill: IBill | IBill[]) {
+async function create(dataBill: billDTO[]) {
   // insert unique clients in database
   const dataUniqueClient = getAllUniqueByField(dataBill, "client_number");
-
+  console.log(dataUniqueClient);
   // insert bill in database
   if (Array.isArray(dataBill)) {
     //multiple
   } else {
     // single
   }
+
   return;
 }
 

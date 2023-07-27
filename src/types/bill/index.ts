@@ -19,7 +19,7 @@ export interface IBill extends IClient {
 }
 
 export interface IBillService {
-  create: (dataBill: IBill | IBill[]) => Promise<void>;
+  create: (dataBill: billDTO[]) => Promise<void>;
 }
 export interface IBillRepository {
   find: (filter: any) => Promise<IBill | void>;

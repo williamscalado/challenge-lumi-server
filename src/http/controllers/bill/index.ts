@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { z } from "zod";
 import { formatErrorMessage } from "../../../helpers/error";
+import { billService } from "../../../services/bill";
 import { billDTO, billValidationDTO } from "./validation";
 
 async function create(req: Request, res: Response) {
@@ -9,7 +10,7 @@ async function create(req: Request, res: Response) {
     const requestBody: billDTO[] = req.body;
     // Now add this object into an array
     z.array(billValidationDTO).nonempty().parse(requestBody);
-    //await billService.create(requestBody);
+    await billService.create(requestBody);
 
     res.status(200).json({
       sucesso: true,
