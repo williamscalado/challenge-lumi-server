@@ -1,11 +1,9 @@
 import { z } from "zod";
 
 export const clientValidation = z.object({
-  client_number: z
-    .string({
-      required_error: "Número do cliente é obrigatório",
-    })
-    .nonempty(),
+  client_number: z.number({
+    required_error: "Número do cliente é obrigatório",
+  }),
   name: z
     .string({
       required_error: "Nome do cliente é obrigatório",

@@ -7,7 +7,7 @@ async function createClient(req: Request, res: Response) {
   try {
     const requestBody: IClientDto = req.body;
     clientValidation.parse(requestBody);
-    await clientService.create(requestBody);
+    await clientService.create([requestBody]);
     res.status(200).json({
       sucesso: true,
     });

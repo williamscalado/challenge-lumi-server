@@ -1,6 +1,6 @@
 import { clientService } from ".";
 import { clientValidation } from "../../http/controllers/client/validation";
-import { clientRepository } from "../../repositories/client";
+
 
 jest.mock("../../repositories/client");
 jest.mock("../../http/controllers/client/validation");

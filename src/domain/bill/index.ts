@@ -1,11 +1,13 @@
 import { billDTO } from "../../http/controllers/bill/validation";
 import { IClient } from "../client";
 
-export interface IBill extends IClient {
-  id: string;
-  client_number: string;
-  month_ref: string;
-  data: string;
+export interface IBill extends Partial<Omit<IClient, "client_number">> {
+  id?: number;
+  name?: string;
+  address?: string;
+  client_number: number;
+  expiration_date: string;
+  reference: string;
   energy_unit: string;
   energy_price: number;
   energy_amount: number;
@@ -20,8 +22,4 @@ export interface IBill extends IClient {
 
 export interface IBillService {
   create: (dataBill: billDTO[]) => Promise<void>;
-}
-export interface IBillRepository {
-  find: (filter: any) => Promise<IBill | void>;
-  create: (data: billDTO) => Promise<void>;
 }

@@ -3,29 +3,34 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+generator client {
+  provider = "prisma-client-js"
+}
+
 model client {
-  id         Int    @id @default(autoincrement())
-  client_Int String @db.VarChar(50)
-  name       String @db.VarChar(100)
-  address    String @db.VarChar(100)
-  createAt   Int    @db.Integer
-  updateAt   Int    @db.Integer
-  bill       bill[]
+  id            Int      @id @default(autoincrement())
+  client_number BigInt   @unique @db.BigInt
+  name          String   @db.VarChar(100)
+  address       String   @db.VarChar(100)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  bill          bill[]
 }
 
 model bill {
-  id                    Int    @id @default(autoincrement())
-  client_id             Int
-  client                client @relation(references: [id], fields: [client_id])
-  data                  String
+  id                    Int      @id @default(autoincrement())
+  client_number         BigInt
+  client                client   @relation(references: [client_number], fields: [client_number])
+  expiration_date       DateTime @db.Date
+  reference             DateTime @db.Date
   energy_unit           String
   energy_price          Int
   energy_amount         Int
   energy_send_unit      Int
   energy_send_price     Int
   energy_send_amount    Int
-  contribution_lighting String
+  contribution_lighting Int
   amount                Int
-  create_at             Int
-  update_at             Int
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
 }
