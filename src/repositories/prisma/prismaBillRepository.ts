@@ -8,7 +8,7 @@ interface IFilters {
 }
 
 async function find(filter: IFilters) {}
-async function create(dataBill: IBill[]) {
+async function create(dataBill: IBill[] | any) {
   await prisma.bill.createMany({
     data: dataBill,
     skipDuplicates: true,
