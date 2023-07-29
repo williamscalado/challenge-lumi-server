@@ -18,7 +18,7 @@ export const billValidationDTO = z.object({
     .nonempty(),
   expiration_date: z.string().nonempty(),
   reference: z.string().nonempty(),
-  energy_unit: z.string().nonempty(),
+  energy_unit: z.number(),
   energy_price: z.number(),
   energy_amount: z.number(),
   energy_send_unit: z.number(),

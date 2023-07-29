@@ -1,0 +1,9 @@
+-- AlterTable
+ALTER TABLE "bill" ALTER COLUMN "energy_price" SET DATA TYPE BIGINT,
+ALTER COLUMN "energy_amount" SET DATA TYPE BIGINT,
+ALTER COLUMN "energy_send_price" SET DATA TYPE BIGINT,
+ALTER COLUMN "energy_send_amount" SET DATA TYPE BIGINT,
+ALTER COLUMN "amount" SET DATA TYPE BIGINT,
+ALTER COLUMN "contribution_lighting" SET DATA TYPE BIGINT,
+ALTER COLUMN "energy_icms_amount" SET DATA TYPE BIGINT,
+ALTER COLUMN "energy_icms_price" SET DATA TYPE BIGINT;

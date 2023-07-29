@@ -23,14 +23,17 @@ model bill {
   client                client   @relation(references: [client_number], fields: [client_number])
   expiration_date       DateTime @db.Date
   reference             DateTime @db.Date
-  energy_unit           String
-  energy_price          Int
-  energy_amount         Int
-  energy_send_unit      Int
-  energy_send_price     Int
-  energy_send_amount    Int
-  contribution_lighting Int
-  amount                Int
+  energy_unit           Float    @db.DoublePrecision
+  energy_price          BigInt
+  energy_amount         BigInt
+  energy_send_unit      Float    @db.DoublePrecision
+  energy_send_price     BigInt
+  energy_send_amount    BigInt
+  energy_icms_unit      Float    @db.DoublePrecision
+  energy_icms_price     BigInt
+  energy_icms_amount    BigInt
+  contribution_lighting BigInt
+  amount                BigInt
   createdAt             DateTime @default(now())
   updatedAt             DateTime @updatedAt
 }

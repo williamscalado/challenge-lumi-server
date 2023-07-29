@@ -14,7 +14,7 @@ app.use(haltOnTimedOut);
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(
   bodyParser.json({
-    limit: "5mb",
+    limit: "10mb",
   })
 );
 app.use(Routes);
