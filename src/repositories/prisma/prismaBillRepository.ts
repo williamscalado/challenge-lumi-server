@@ -33,12 +33,7 @@ async function getStatistics(yearFilter: string, MonthFilter: string) {
       energy_send_amount: true,
     },
   });
-  console.log(
-    `${year}-${month}-01T00:00:00Z`,
-    `${year - 1}-${(Number(month) + 1)
-      .toString()
-      .padStart(2, "0")}-01T00:00:00Z`
-  );
+
   const metricsToYear = await prisma.bill.findMany({
     select: {
       reference: true,
