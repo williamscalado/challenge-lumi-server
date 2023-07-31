@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "generate": "npx prisma generate",
+    "start-db": "npx prisma generate && npx prisma migrate dev",
     "dev": "pnpm run generate && tsx watch src/server.ts",
+    "build": "npm run generate  && tsx watch src/server.ts",
     "test": "jest --coverage"
   },
   "prisma": {
