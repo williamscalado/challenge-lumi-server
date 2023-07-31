@@ -23,6 +23,19 @@ export interface IBill extends Partial<Omit<IClient, "client_number">> {
   update_at?: string;
 }
 
+
+export interface IBillByClient {
+  client: IClient;
+  bill: IBill[];
+}
+
 export interface IBillService {
   create: (dataBill: billDTO[]) => Promise<any>;
+  findAll: () => Promise<IBill[]>;
+  findBillByClient: (
+    year: string,
+    numberClient?: string | any
+  ) => Promise<IBillByClient[] | any[]>;
+  getStatistics: (year: string, month?: string | any) => Promise<any>;
+  findUniqueYearByClient: () => Promise<Object>;
 }

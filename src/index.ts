@@ -37,6 +37,10 @@ function haltOnTimedOut(req: Request, res: Response, next: NextFunction) {
   if (!req.timedout) next();
 }
 
+BigInt.prototype.toJSON = function () {
+  return this.toString();
+};
+
 export const ServerConfig = {
   app,
   port,

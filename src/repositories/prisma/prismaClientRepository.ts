@@ -7,6 +7,9 @@ interface IFilters {
   valeu: string;
 }
 
+async function findALL(filter: IFilters) {
+  return await prisma.client.findMany();
+}
 async function find(filter: IFilters) {}
 async function create(dataClient: IClientDto[]) {
   return await prisma.client.createMany({
