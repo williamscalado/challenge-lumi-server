@@ -11,7 +11,7 @@ const processUpload = async (req: Request, res: Response) => {
     const { pdf }: any = req.files;
     const resultPdfs = await processPDFs(pdf);
     const result = await billService.create(resultPdfs as billDTO[]);
-    console.log(resultPdfs);
+
     res.status(200).json(result);
   } catch (error) {
     res.status(400).json(formatErrorMessage(error));
@@ -63,7 +63,7 @@ async function findBillByClient(req: Request, res: Response) {
 async function getStatistics(req: Request, res: Response) {
   try {
     const { year, month } = req.params;
-    console.log(month);
+
     if (year)
       z.string().min(4, "Ano inválido").max(4, "Ano inválido").parse(year);
 
